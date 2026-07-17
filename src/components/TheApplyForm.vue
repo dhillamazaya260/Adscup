@@ -47,12 +47,10 @@ function editForm() {
 
       <div class="panel reveal" v-reveal>
         <form class="apply-card" v-if="!formSubmitted" @submit.prevent="submitForm">
-          <div class="field">
-            <label class="field">
-              <span>Nama brand</span>
-              <input v-model="brandForm.businessName" type="text" placeholder="Contoh: Glowlab Skincare" />
-            </label>
-          </div>
+          <label class="field">
+            <span>Nama brand</span>
+            <input v-model="brandForm.businessName" type="text" placeholder="Contoh: Glowlab Skincare" />
+          </label>
 
           <div class="field-row">
             <label class="field">

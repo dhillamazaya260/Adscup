@@ -49,10 +49,10 @@ const activeSteps = computed(() => stepsByTab[activeTab.value])
 </template>
 
 <style scoped>
-.how-head { max-width: 560px; margin-bottom: 40px; }
+.how-head { max-width: 560px; margin: 0 auto 40px; text-align: center; }
 .how-head h2 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); margin-top: 6px; }
 
-.tabs { display: flex; gap: 32px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+.tabs { display: flex; justify-content: center; gap: 32px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
 .tab-btn { padding: 12px 0; font-weight: 700; font-size: 0.98rem; color: var(--ink-soft); border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .tab-btn.active { color: var(--ink); border-color: var(--cherry); }
 
