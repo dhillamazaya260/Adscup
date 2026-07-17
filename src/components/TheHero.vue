@@ -23,6 +23,7 @@ function startAutoplay() {
     cupIndex.value = (cupIndex.value + 1) % cupStates.length
   }, 2600)
 }
+
 function stopAutoplay() {
   if (intervalId) {
     clearInterval(intervalId)
@@ -34,6 +35,7 @@ function selectState(i) {
   cupIndex.value = i
   startAutoplay()
 }
+
 function cycleState() {
   cupIndex.value = (cupIndex.value + 1) % cupStates.length
   startAutoplay()
@@ -53,9 +55,11 @@ function handlePointerMove(e) {
   tiltY.value = px * 22
   tiltX.value = py * -16
 }
+
 function handlePointerEnter() {
   isHovering.value = true
 }
+
 function handlePointerLeave() {
   isHovering.value = false
   tiltX.value = 0
@@ -234,13 +238,17 @@ onUnmounted(stopAutoplay)
 
 .hero-visual {
   display: grid;
+  grid-template-areas: 
+    "visual"
+    "controls";
   place-items: center;
   margin-top: 26px;
-  padding: 20px 0 8px;
+  gap: 24px; /* Memberi jarak konsisten antara cup dan dots */
   position: relative;
 }
+
 .hero-bg-word {
-  grid-area: 1 / 1;
+  grid-area: visual;
   font-size: clamp(3.6rem, 15vw, 9.5rem);
   font-weight: 800;
   color: var(--ink);
@@ -251,7 +259,7 @@ onUnmounted(stopAutoplay)
 }
 
 .cup-stage {
-  grid-area: 1 / 1;
+  grid-area: visual;
   position: relative;
   z-index: 2;
   perspective: 900px;
@@ -318,12 +326,9 @@ onUnmounted(stopAutoplay)
 .cup-lid { transform-origin: 120px 60px; animation: lid-wobble 4.5s ease-in-out infinite; }
 
 .cup-dots {
-  grid-area: 1 / 1;
-  align-self: end;
+  grid-area: controls;
   display: flex;
   gap: 10px;
-  margin-top: 14px;
-  transform: translateY(148%);
   z-index: 3;
 }
 .cup-dot {
@@ -393,9 +398,8 @@ h1 { animation-delay: 0.15s; }
 
 @media (max-width: 640px) {
   .hero { padding: 24px 0 56px; }
-  .hero-visual { padding: 10px 0 4px; }
   .cup-hint { display: none; }
-  .cup-dots { transform: translateY(120%); }
+  /* translateY dihapus total di sini karena grid sudah mengaturnya dengan aman */
 }
 
 @media (prefers-reduced-motion: reduce) {
