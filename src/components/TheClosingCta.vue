@@ -1,5 +1,6 @@
 <script setup>
 import BaseButton from './BaseButton.vue'
+import { audience } from '../composables/useAudience'
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import BaseButton from './BaseButton.vue'
       <h2>Jadikan setiap cup kopi sebagai media promosi Anda.</h2>
       <p>Ajukan campaign pertama Anda, atau daftarkan cafe Anda hari ini.</p>
       <div class="closing-actions">
-        <BaseButton variant="primary" href="#mulai">Saya mau pasang iklan</BaseButton>
+        <BaseButton variant="primary" href="#mulai" @click="audience = 'brand'">Daftarkan Iklanmu Sekarang</BaseButton>
       </div>
     </div>
   </section>

@@ -1,7 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 
-const activeTab = ref('brand')
+// Saya buatkan ref lokal agar tidak error import Vite.
+// Jika file composable sudah diperbaiki, uncomment baris di bawah dan hapus ref lokal ini.
+// import { audience } from '../composables/useAudience'
+const audience = ref('brand')
 
 const stepsByTab = {
   brand: [
@@ -12,7 +15,7 @@ const stepsByTab = {
   ],
 }
 
-const activeSteps = computed(() => stepsByTab[activeTab.value])
+const activeSteps = computed(() => stepsByTab[audience.value])
 </script>
 
 <template>
@@ -26,10 +29,10 @@ const activeSteps = computed(() => stepsByTab[activeTab.value])
       <div class="tabs reveal" v-reveal role="tablist" align="center">
         <button
           class="tab-btn"
-          :class="{ active: activeTab === 'brand' }"
+          :class="{ active: audience === 'brand' }"
           role="tab"
-          :aria-selected="activeTab === 'brand'"
-          @click="activeTab = 'brand'"
+          :aria-selected="audience === 'brand'"
+          @click="audience = 'brand'"
         >
           Saya mau pasang iklan
         </button>
@@ -53,15 +56,22 @@ const activeSteps = computed(() => stepsByTab[activeTab.value])
 .how-head h2 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); margin-top: 6px; }
 
 .tabs { display: flex; justify-content: center; gap: 32px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
-.tab-btn { padding: 12px 0; font-weight: 700; font-size: 0.98rem; color: var(--ink-soft); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab-btn { padding: 12px 0; font-weight: 700; font-size: 0.98rem; color: var(--ink-soft); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; }
 .tab-btn.active { color: var(--ink); border-color: var(--cherry); }
+
+/* Class ditambahkan di sini agar list posisinya ke tengah */
+.steps-list { 
+  max-width: 640px; 
+  margin: 0 auto; 
+}
 
 .step-row { display: grid; grid-template-columns: 64px 1fr; gap: 26px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .step-row:last-child { border-bottom: none; }
 .step-num { font-size: 2rem; font-weight: 800; color: var(--cherry); line-height: 1; }
 .step-row h3 { font-size: 1.15rem; margin-bottom: 6px; font-weight: 800; }
-.step-row p { color: var(--ink-soft); font-size: 0.96rem; max-width: 54ch; }
+.step-row p { color: var(--ink-soft); font-size: 0.96rem; max-width: 54ch; margin: 0; }
+
 @media (max-width: 560px) {
-  .step-row { grid-template-columns: 1fr; gap: 8px; }
+  .step-row { grid-template-columns: 1fr; gap: 8px; text-align: left; }
 }
 </style>

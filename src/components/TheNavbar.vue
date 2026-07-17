@@ -7,6 +7,7 @@ import BaseButton from './BaseButton.vue'
     <div class="wrap nav">
       <div class="logo">Ads<span>Cup</span></div>
       <nav class="nav-links">
+        <a href="#layanan">Layanan</a>
         <a href="#cara-kerja">Cara kerja</a>
         <a href="#kenapa">Kenapa AdsCup</a>
         <a href="#kontak">Kontak</a>

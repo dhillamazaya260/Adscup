@@ -5,6 +5,7 @@
     <div class="wrap footer-grid">
       <div class="logo">Ads<span>Cup</span></div>
       <div class="footer-links">
+        <a href="#layanan">Layanan</a>
         <a href="#cara-kerja">Cara kerja</a>
         <a href="#kenapa">Kenapa AdsCup</a>
         <a href="mailto:halo@adscup.id">halo@adscup.id</a>

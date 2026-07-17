@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BaseButton from './BaseButton.vue'
+import { audience } from '../composables/useAudience'
 
 const cupStates = [
   { fill: '#CC2B54', dark: '#9E1F40', label: 'IKLAN ANDA', tag: 'Brand kosmetik' },
@@ -71,9 +72,11 @@ onUnmounted(stopAutoplay)
       <div class="hero-top">
         <span class="eyebrow">Media Iklan dengan cup kopi</span>
         <h1>Cup kopi pelanggan Anda. Media iklan Anda.</h1>
+        <p class="hero-sub">Kami yang urus kopi, cup, dan distribusinya — Anda tinggal pilih rasa dan lokasinya.</p>
         <div class="hero-actions">
-          <BaseButton variant="primary" href="#mulai">Saya mau pasang iklan</BaseButton>
+          <BaseButton variant="primary" href="#mulai" @click="audience = 'brand'">Saya mau pasang iklan</BaseButton>
         </div>
+        <p class="hero-note">Pengajuan awal tanpa biaya, tim kami merespons dalam 1x24 jam kerja.</p>
       </div>
 
       <div class="hero-visual">
@@ -92,7 +95,6 @@ onUnmounted(stopAutoplay)
           @keyup.enter="cycleState"
           @keyup.space.prevent="cycleState"
         >
-
           <div
             class="cup-3d"
             :class="{ paused: isHovering }"
@@ -160,6 +162,23 @@ onUnmounted(stopAutoplay)
                 opacity="0.55"
               />
 
+              <!-- ad label band: this is the actual demo, cup surface = ad space -->
+              <g clip-path="url(#bandClip)">
+                <rect class="cup-band" x="60" y="130" width="120" height="100" :fill="cupState.fill" />
+                <rect class="band-shine" x="30" y="130" width="35" height="100" fill="#ffffff" opacity="0.3" />
+              </g>
+              <text
+                :key="cupState.label"
+                class="cup-label"
+                x="120"
+                y="185"
+                text-anchor="middle"
+                font-size="13"
+                font-weight="800"
+                letter-spacing="0.4"
+                fill="#ffffff"
+              >{{ cupState.label }}</text>
+
               <!-- top rim of cup, sits under the lid -->
               <path d="M64 86 Q120 96 176 86 L172 78 Q120 88 68 78 Z" fill="#efece6" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round" />
 
@@ -185,6 +204,20 @@ onUnmounted(stopAutoplay)
               </g>
             </svg>
           </div>
+        </div>
+
+        <div class="cup-dots" role="group" aria-label="Pilih contoh brand">
+          <button
+            v-for="(state, i) in cupStates"
+            :key="state.label"
+            type="button"
+            class="cup-dot"
+            :class="{ active: i === cupIndex }"
+            :style="{ '--dot-color': state.fill }"
+            :aria-label="`Tampilkan contoh: ${state.tag}`"
+            :aria-pressed="i === cupIndex"
+            @click="selectState(i)"
+          ></button>
         </div>
       </div>
     </div>
