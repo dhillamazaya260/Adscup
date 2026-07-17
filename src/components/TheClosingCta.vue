@@ -1,6 +1,6 @@
 <script setup>
 import BaseButton from './BaseButton.vue'
-import { audience } from '../composables/useAudience'
+import { audience } from '../composables/Useaudience'
 </script>
 
 <template>

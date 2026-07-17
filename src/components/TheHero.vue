@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BaseButton from './BaseButton.vue'
-import { audience } from '../composables/useAudience'
+import { audience } from '../composables/Useaudience'
 
 const cupStates = [
   { fill: '#CC2B54', dark: '#9E1F40', label: 'IKLAN ANDA', tag: 'Brand kosmetik' },
@@ -15,7 +15,7 @@ let intervalId = null
 const prefersReduced = typeof window !== 'undefined'
   ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
   : false
-
+  
 function startAutoplay() {
   if (prefersReduced) return
   stopAutoplay()
